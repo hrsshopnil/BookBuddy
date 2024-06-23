@@ -9,7 +9,7 @@ import SwiftUI
 
 struct BooksItemViews: View {
     let book: Book
-    @State private var selectedBookCoverData: Data?
+    @State private var bookCoverData: Data?
     var body: some View {
         NavigationLink {
             EditBookView(book: book)
@@ -18,7 +18,7 @@ struct BooksItemViews: View {
                 VStack(alignment: .leading) {
                     
                     Group {
-                        if let selectedBookCoverData , let uiImage = UIImage(data: selectedBookCoverData) {
+                        if let bookCoverData , let uiImage = UIImage(data: bookCoverData) {
                             Image(uiImage: uiImage)
                                 .resizable()
                                 .scaledToFit()
@@ -52,6 +52,9 @@ struct BooksItemViews: View {
                 }//: VSTACK
                 .frame(minWidth: 120, minHeight: 260)
             }
+        }
+        .onAppear {
+            bookCoverData = book.bookCover
         }
     }
 }

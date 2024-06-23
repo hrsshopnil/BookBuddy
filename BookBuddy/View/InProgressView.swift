@@ -9,7 +9,19 @@ import SwiftUI
 
 struct InProgressView: View {
     var body: some View {
-        Text("Hello, World!")
+        NavigationStack {
+            BookListView(status: .inProgress)
+                .padding(.top)
+                .padding(10)
+                .toolbar {
+                    ToolbarItem(placement: .topBarLeading) {
+                        Text("Started")
+                            .font(.system(.largeTitle, design: .rounded))
+                            .fontWeight(.heavy)
+                            .foregroundStyle(.accent)
+                    }
+                }
+        }
     }
 }
 

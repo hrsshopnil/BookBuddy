@@ -92,6 +92,7 @@
 				B3587A9F2C1A12930064FF0E /* App */,
 				B3587A982C1A125D0064FF0E /* View */,
 				B3587AA22C1A1D150064FF0E /* Model */,
+				B3587AA92C1A221F0064FF0E /* Utilities */,
 				B3587A8E2C19FD330064FF0E /* Assets.xcassets */,
 				B3587A902C19FD330064FF0E /* Preview Content */,
 			);
@@ -111,9 +112,9 @@
 			isa = PBXGroup;
 			children = (
 				B3587A992C1A126D0064FF0E /* BooksItemViews.swift */,
+				B3587AA02C1A19ED0064FF0E /* OnShelfView.swift */,
 				B3587A9B2C1A12790064FF0E /* InProgressView.swift */,
 				B3587A9D2C1A12880064FF0E /* CompletedView.swift */,
-				B3587AA02C1A19ED0064FF0E /* OnShelfView.swift */,
 				B3AA56B62C1AAF9C00140903 /* NewBookView.swift */,
 				B3AA56BA2C1ABDC500140903 /* BookListView.swift */,
 				B37C09D92C1B35CC00AFA33D /* EditBookView.swift */,
@@ -138,7 +139,6 @@
 				B3587AA32C1A1D2D0064FF0E /* BookModel.swift */,
 				B3587AA52C1A20B80064FF0E /* QuoteModel.swift */,
 				B3587AA72C1A20C30064FF0E /* GenreModel.swift */,
-				B3587AA92C1A221F0064FF0E /* Utilities */,
 			);
 			path = Model;
 			sourceTree = "<group>";

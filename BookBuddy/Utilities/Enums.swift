@@ -29,7 +29,7 @@ enum Status:Int, Codable, Identifiable, CaseIterable {
 }
 
 enum SortOrder: String, Identifiable, CaseIterable {
-    case title, author, status
+    case title, author
     
     var id: Self {
         self

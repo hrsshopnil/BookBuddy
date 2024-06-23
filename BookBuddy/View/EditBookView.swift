@@ -18,7 +18,7 @@ struct EditBookView: View {
     @State private var title = ""
     @State private var author = ""
     @State private var summary = ""
-    @State private var dateAdded = Date.now
+    @State private var dateCreated = Date.now
     @State private var dateStarted = Date.distantPast
     @State private var dateCompleted = Date.distantPast
     @State private var bookCover: PhotosPickerItem?
@@ -30,7 +30,6 @@ struct EditBookView: View {
     }
     
     var body: some View {
-        GeometryReader { geometry in
             ScrollView(.vertical, showsIndicators: false) {
                 VStack {
                     PhotosPicker(selection: $bookCover, matching: .images, photoLibrary: .shared()) {
@@ -45,7 +44,7 @@ struct EditBookView: View {
                                     .scaledToFit()
                             }
                         }//: GROUP
-                        .frame(width: 120, height: 160)
+                        .frame(width: 200, height: 200)
                         .overlay(alignment: .bottomTrailing) {
                             if bookCoverData != nil {
                                 Button {
@@ -53,8 +52,8 @@ struct EditBookView: View {
                                     bookCoverData = nil
                                 } label: {
                                     Image(systemName: "x.circle.fill")
-                                        .foregroundStyle(.red)
-                                        .font(.title)
+                                        .foregroundStyle(.accent)
+                                        .font(.title3)
                                 }
                             }
                         }
@@ -88,9 +87,9 @@ struct EditBookView: View {
                             LabeledContent {
                                 switch status {
                                 case .onShelf:
-                                    DatePicker("", selection: $dateAdded, displayedComponents: .date)
+                                    DatePicker("", selection: $dateCreated, displayedComponents: .date)
                                 case .inProgress, .completed:
-                                    DatePicker("", selection: $dateAdded, in: ...dateStarted, displayedComponents: .date)
+                                    DatePicker("", selection: $dateCreated, in: ...dateStarted, displayedComponents: .date)
                                 }
                             } label: {
                                 Text("Date Created")
@@ -98,7 +97,7 @@ struct EditBookView: View {
                             
                             if status == .inProgress || status == .completed {
                                 LabeledContent {
-                                    DatePicker("", selection: $dateStarted, in: dateAdded..., displayedComponents: .date)
+                                    DatePicker("", selection: $dateStarted, in: dateCreated..., displayedComponents: .date)
                                 } label: {
                                     Text("Date Started")
                                 }
@@ -122,7 +121,7 @@ struct EditBookView: View {
                                 dateStarted = Date.now
                             } else if newValue == .completed && oldValue == .onShelf {
                                 dateCompleted = Date.now
-                                dateStarted = dateAdded
+                                dateStarted = dateCreated
                             } else {
                                 dateCompleted = Date.now
                             }
@@ -163,9 +162,54 @@ struct EditBookView: View {
                     .padding(.leading, 12)
                     .padding(.horizontal)
                 }//: VSTACK
+                .navigationTitle(title)
+                .navigationBarTitleDisplayMode(.inline)
+                .toolbar {
+                    if changed {
+                        Button("Update") {
+                            book.status = status.rawValue
+                            book.rating = rating
+                            book.title = title
+                            book.author = author
+                            book.summary = summary
+                            book.dateCreated = dateCreated
+                            book.dateStarted = dateStarted
+                            book.dateCompleted = dateCompleted
+                            book.bookCover = bookCoverData
+                            dismiss()
+                        }
+                        .buttonStyle(.borderedProminent)
+                    }
+                }
                 
-            }//: GEOMETRY READER
-        }//: BODY
+                .onAppear {
+                    rating = book.rating
+                    title = book.title
+                    author = book.author
+                    summary = book.summary
+                    dateCreated = book.dateCreated
+                    dateStarted = book.dateStarted
+                    dateCompleted = book.dateCompleted
+                    bookCoverData = book.bookCover
+                }
+                .task(id: bookCover) {
+                    if let data = try? await bookCover?.loadTransferable(type: Data.self) {
+                        bookCoverData = data
+                    }
+                }
+        }//: SCROLLVIEW
+    }//: BODY
+    
+    var changed: Bool {
+        status != Status(rawValue: book.status)!
+        || rating != book.rating
+        || title != book.title
+        || author != book.author
+        || summary != book.summary
+        || dateCreated != book.dateCreated
+        || dateStarted != book.dateStarted
+        || dateCompleted != book.dateCompleted
+        || bookCoverData != book.bookCover
     }
 }//: STRUCT
 

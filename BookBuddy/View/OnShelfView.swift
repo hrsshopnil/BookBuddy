@@ -8,44 +8,42 @@
 import SwiftUI
 
 struct OnShelfView: View {
-    @State private var selectedBookCoverData: Data?
+    
     @State private var showNewBookView = false
     var body: some View {
         
         NavigationStack {
-                
-                BookListView(sortOrder: .title)
-                .padding(.top)
-                .padding(5)
             
-            .sheet(isPresented: $showNewBookView){
-                NewBookView()
-                    .presentationDetents([.medium])
-            }
-            .toolbar {
-                ToolbarItem(placement: .topBarLeading) {
-                    Text("My Books")
-                        .font(.system(.largeTitle, design: .rounded))
-                        .fontWeight(.heavy)
-                        .foregroundStyle(.accent)
+            BookListView(status: .onShelf)
+                .padding(.top)
+                .padding(10)
+            
+            
+                .sheet(isPresented: $showNewBookView){
+                    NewBookView()
+                        .presentationDetents([.medium])
                 }
-                ToolbarItem(placement: .topBarTrailing) {
-                    Button {
-                        showNewBookView = true
-                    } label: {
-                        Image(systemName: "plus.circle")
-                            .font(.title)
-                            .fontWeight(.bold)
+                .toolbar {
+                    ToolbarItem(placement: .topBarLeading) {
+                        Text("My Books")
+                            .font(.system(.largeTitle, design: .rounded))
+                            .fontWeight(.heavy)
+                            .foregroundStyle(.accent)
                     }
-                    
+                    ToolbarItem(placement: .topBarTrailing) {
+                        Button {
+                            showNewBookView = true
+                        } label: {
+                            Image(systemName: "plus.circle")
+                                .font(.title)
+                                .fontWeight(.bold)
+                        }
+                        
+                    }
                 }
-                
-            }
         }
-        
     }
 }
-
 #Preview {
     let preview = Preview(Book.self)
     preview.addExamples(Book.sampleBooks)

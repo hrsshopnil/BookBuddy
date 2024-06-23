@@ -20,7 +20,7 @@ struct ContentView: View {
             InProgressView()
                 .tabItem {
                     Image(systemName: "hourglass.bottomhalf.filled")
-                    Text("In Progress")
+                    Text("Started")
                 }
             
             CompletedView()

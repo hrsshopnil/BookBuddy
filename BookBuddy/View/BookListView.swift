@@ -11,32 +11,16 @@ import SwiftData
 struct BookListView: View {
     
     @Environment(\.modelContext) private var context
-    @Query private var books: [Book]
-    
-    init(sortOrder: SortOrder) {
-        let sortDescriptors: [SortDescriptor<Book>] =
-        switch sortOrder {
-        case .status:
-            [
-                SortDescriptor(\Book.status),
-                SortDescriptor(\Book.title)
-            ]
-            
-        case .title:
-            [SortDescriptor(\Book.title)]
-            
-        case .author:
-            [SortDescriptor(\Book.author)]
-        }
-
-        _books = Query(sort: sortDescriptors)
-    }
+    @Query(sort: \Book.title) private var books: [Book]
+    let status: Status
     
     var body: some View {
         ScrollView(.vertical, showsIndicators: false) {
             LazyVGrid(columns: gridLayout, alignment: .center, spacing: columnSpacing, pinnedViews: [], content: {
                 ForEach (books) {book in
-                    BooksItemViews(book: book)
+                    if book.status == status.rawValue {
+                        BooksItemViews(book: book)
+                    }
                 }//: LOOP
             })
         }
@@ -44,5 +28,8 @@ struct BookListView: View {
 }
 
 #Preview {
-    BookListView(sortOrder: .status)
+    let preview = Preview(Book.self)
+    preview.addExamples(Book.sampleBooks)
+    return BookListView(status: .onShelf)
+        .modelContainer(preview.container)
 }
