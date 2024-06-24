@@ -139,7 +139,7 @@ struct EditBookView: View {
                         }
                     }
                     .padding(.horizontal, 15)
-                    
+                
                     HStack {
                         NavigationLink {
                             GenresView(book: book)

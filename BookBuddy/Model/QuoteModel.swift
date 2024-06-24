@@ -10,7 +10,7 @@ import SwiftData
 
 @Model
 class Quote {
-    var creationData: Date = Date.now
+    var creationDate: Date = Date.now
     var text: String
     var page: String?
     var book: Book?
