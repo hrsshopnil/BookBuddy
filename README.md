@@ -5,5 +5,6 @@ This iOS app helps you manage your book collection with ease leveraging SwiftDat
   <img src="https://github.com/hrsshopnil/BookBuddy/assets/89196977/17c009b6-1151-4851-b0d1-86027a7532b4" alt="GIF">
 </p>
 
+<h1>Teck Used</h1>
 - Item 1
 - Item 2
