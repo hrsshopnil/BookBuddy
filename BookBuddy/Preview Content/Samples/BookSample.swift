@@ -20,7 +20,7 @@ extension Book {
                  dateStarted: Date.now,
                  status: Status.inProgress),
             Book(title: "Silence of the Grave",
-                 author: "Arnuldur Indrason, Bernard Scuddersdfgsdffgsdfgsdfgafgasdfasdfasddfasdsdfasdfasdf",
+                 author: "Arnuldur Indrason, Bernard",
                  dateCreated: lastMonth,
                  dateStarted: lastWeek,
                  dateCompleted: Date.now,

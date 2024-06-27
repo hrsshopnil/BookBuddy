@@ -16,7 +16,6 @@ struct ContentView: View {
                     Image(systemName: "books.vertical")
                     Text("On Shelf")
                 }
-            
             InProgressView()
                 .tabItem {
                     Image(systemName: "hourglass.bottomhalf.filled")

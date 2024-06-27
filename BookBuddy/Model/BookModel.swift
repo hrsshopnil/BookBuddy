@@ -21,7 +21,7 @@ class Book {
     @Relationship(deleteRule: .cascade)
     var quote: [Quote]?
     @Relationship(inverse: \Genre.books)
-    var genre: [Genre]?
+    var genres: [Genre]?
     @Attribute(.externalStorage)
     var bookCover: Data?
     

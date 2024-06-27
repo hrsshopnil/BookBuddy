@@ -58,7 +58,7 @@ struct EditBookView: View {
                             }
                         }
                     }//: PHOTOSPICKER
-                    VStack(spacing: 16) {
+                    VStack(spacing: 9) {
                         TextField("Title", text: $title)
                             .padding(12)
                             .background(
@@ -137,30 +137,34 @@ struct EditBookView: View {
                                         .stroke(Color(uiColor: .tertiaryLabel), lineWidth: 2.5)
                                 )
                         }
-                    }
-                    .padding(.horizontal, 15)
-                
-                    HStack {
-                        NavigationLink {
-                            GenresView(book: book)
-                        } label: {
-                            Label("Genre", systemImage: "bookmark.fill")
+                        if let genres = book.genres {
+                            ScrollView(.horizontal, showsIndicators: false) {
+                                GenreStackView(genres: genres)
+                            }
                         }
-                        .buttonStyle(.bordered)
                         
-                        NavigationLink {
-                            QuoteView(book: book)
-                        } label: {
-                            let count = book.quote?.count ?? 0
-                            Label("\(count) Quotes", systemImage: "quote.opening")
+                        HStack {
+                            NavigationLink {
+                                GenresView(book: book)
+                            } label: {
+                                Label("Genre", systemImage: "bookmark.fill")
+                            }
+                            .buttonStyle(.bordered)
+                            
+                            NavigationLink {
+                                QuoteView(book: book)
+                            } label: {
+                                let count = book.quote?.count ?? 0
+                                Label("\(count) Quotes", systemImage: "quote.opening")
+                            }
+                            .buttonStyle(.bordered)
+                            .frame(maxWidth: .infinity, alignment: .trailing)
+                            .padding(.horizontal)
                         }
-                        .buttonStyle(.bordered)
-                        .frame(maxWidth: .infinity, alignment: .trailing)
-                        .padding(.horizontal)
-                    }
-                    .padding(.vertical, 8)
-                    .padding(.leading, 12)
-                    .padding(.horizontal)
+                    }//VSTACK(SPACING: 16)
+                    .padding(.horizontal, 15)
+
+
                 }//: VSTACK
                 .navigationTitle(title)
                 .navigationBarTitleDisplayMode(.inline)

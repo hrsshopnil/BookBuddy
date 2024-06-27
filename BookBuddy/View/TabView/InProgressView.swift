@@ -15,7 +15,7 @@ struct InProgressView: View {
                 .padding(10)
                 .toolbar {
                     ToolbarItem(placement: .topBarLeading) {
-                        Text("Started")
+                        Text("My Books")
                             .font(.system(.largeTitle, design: .rounded))
                             .fontWeight(.heavy)
                             .foregroundStyle(.accent)
