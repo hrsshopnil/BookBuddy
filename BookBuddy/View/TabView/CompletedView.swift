@@ -11,11 +11,10 @@ struct CompletedView: View {
     var body: some View {
         NavigationStack {
             BookListView(status: .completed)
-                .padding(.top)
-                .padding(10)
+            
                 .toolbar {
                     ToolbarItem(placement: .topBarLeading) {
-                        Text("Completed")
+                        Text("My Books")
                             .font(.system(.largeTitle, design: .rounded))
                             .fontWeight(.heavy)
                             .foregroundStyle(.accent)

@@ -22,7 +22,7 @@ public struct RatingsView: View {
     ///   - color: The color of the image ( (Default - systemYellow)
     ///   - sfSymbol: A String representing an SFImage that has a fill variabnt (Default -  "star")
     ///
-    public init(maxRating: Int, currentRating: Binding<Int?>, width: Int = 30, color: Color = Color("colorOrange"), sfSymbol: String = "star") {
+    public init(maxRating: Int, currentRating: Binding<Int?>, width: Int = 30, color: Color = Color(UIColor(.accentColor)), sfSymbol: String = "star") {
         self.maxRating = maxRating
         self._currentRating = currentRating
         self.width = width
