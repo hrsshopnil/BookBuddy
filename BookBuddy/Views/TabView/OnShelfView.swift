@@ -11,11 +11,9 @@ import SwiftData
 struct OnShelfView: View {
     
     @State private var showNewBookView = false
-    
     var body: some View {
         NavigationStack {
             BookListView(status: .onShelf)
-            
                 .sheet(isPresented: $showNewBookView){
                     NewBookView()
                         .presentationDetents([.medium])

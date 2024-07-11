@@ -1,5 +1,5 @@
 //
-//  InProgressView.swift
+//  CompletedView.swift
 //  BookBuddy
 //
 //  Created by shopnil hasan on 12/6/24.
@@ -7,11 +7,10 @@
 
 import SwiftUI
 
-struct InProgressView: View {
+struct CompletedView: View {
     var body: some View {
         NavigationStack {
-            BookListView(status: .inProgress)
-            
+            BookListView(status: .completed)
                 .toolbar {
                     ToolbarItem(placement: .topBarLeading) {
                         Text("My Books")
@@ -25,5 +24,5 @@ struct InProgressView: View {
 }
 
 #Preview {
-    InProgressView()
+    CompletedView()
 }
